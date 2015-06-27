@@ -1,4 +1,6 @@
 #!/usr/bin/env perl
+# Summary: Install a Crystal version
+# Usage: crenv install <version>
 
 use strict;
 use warnings;
