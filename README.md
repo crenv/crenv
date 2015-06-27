@@ -25,6 +25,8 @@ Some useful crenv commands are:
    local       Set or show the local application-specific Crystal version
    global      Set or show the global Crystal version
    shell       Set or show the shell-specific Crystal version
+   install     Install a Crystal version
+   uninstall   Uninstall a specific Crystal version
    rehash      Rehash crenv shims (run this after installing executables)
    version     Show the current Crystal version and its origin
    versions    List all Crystal versions available to crenv
