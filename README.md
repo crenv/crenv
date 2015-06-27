@@ -41,8 +41,6 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 - [riywo](https://github.com/riywo)<br />
 crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
-- [hokaccha](https://github.com/hokaccha)<br />
-crenv-install is based [nodebrew](https://github.com/hokaccha/nodebrew). Thank you.
 
 ## See also
 - [crystalbrew](https://github.com/pine613/crystalbrew)
