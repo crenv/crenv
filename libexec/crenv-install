@@ -38,8 +38,6 @@ sub install {
     my $target_name       = "crystal-$version-$platform-$arch";
     my $tarball_path      = "$cache_dir/$target_name.tar.gz";
 
-    say $version;
-
     say "resolve: $target_name";
     my $release       = $self->github->fetch_release($version);
     my $download_urls = $self->find_binary_download_urls($release->{assets});
