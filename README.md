@@ -45,7 +45,7 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
 
 ## See also
-- [crystalbrew](https://github.com/pine613/crystalbrew)
+- [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager
 
 ## License
 Please see LICENSE file.
