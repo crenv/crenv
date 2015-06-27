@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#
+# Summary: Display the full path to an executable
+#
+# Usage: crenv which <command>
+#
+# Displays the full path to the executable that crenv will invoke when
+# you run the given command.
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+# Provide crenv completions
+if [ "$1" = "--complete" ]; then
+  exec crenv shims --short
+fi
+
+expand_path() {
+  if [ ! -d "$1" ]; then
+    return 1
+  fi
+
+  local cwd="$(pwd)"
+  cd "$1"
+  pwd
+  cd "$cwd"
+}
+
+remove_from_path() {
+  local path_to_remove="$(expand_path "$1")"
+  local result=""
+
+  if [ -z "$path_to_remove" ]; then
+    echo "${PATH}"
+    return
+  fi
+
+  local paths
+  IFS=: paths=($PATH)
+
+  for path in "${paths[@]}"; do
+    path="$(expand_path "$path" || true)"
+    if [ -n "$path" ] && [ "$path" != "$path_to_remove" ]; then
+      result="${result}${path}:"
+    fi
+  done
+
+  echo "${result%:}"
+}
+
+CRENV_VERSION="$(crenv-version-name)"
+CRENV_COMMAND="$1"
+
+if [ -z "$CRENV_COMMAND" ]; then
+  crenv-help --usage which >&2
+  exit 1
+fi
+
+if [ "$CRENV_VERSION" = "system" ]; then
+  PATH="$(remove_from_path "${CRENV_ROOT}/shims")"
+  CRENV_COMMAND_PATH="$(command -v "$CRENV_COMMAND" || true)"
+else
+  CRENV_COMMAND_PATH="${CRENV_ROOT}/versions/${CRENV_VERSION}/bin/${CRENV_COMMAND}"
+fi
+
+OLDIFS="$IFS"
+IFS=$'\n' scripts=(`crenv-hooks which`)
+IFS="$OLDIFS"
+for script in "${scripts[@]}"; do
+  source "$script"
+done
+
+if [ -x "$CRENV_COMMAND_PATH" ]; then
+  echo "$CRENV_COMMAND_PATH"
+else
+  echo "crenv: $CRENV_COMMAND: command not found" >&2
+
+  versions="$(crenv-whence "$CRENV_COMMAND" || true)"
+  if [ -n "$versions" ]; then
+    { echo
+      echo "The \`$1' command exists in these Crystal versions:"
+      echo "$versions" | sed 's/^/  /g'
+      echo
+    } >&2
+  fi
+
+  exit 127
+fi

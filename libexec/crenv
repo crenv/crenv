@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+set -e
+export -n CDPATH
+
+if [ "$1" = "--debug" ]; then
+  export CRENV_DEBUG=1
+  shift
+fi
+
+if [ -n "$CRENV_DEBUG" ]; then
+  export PS4='+ [${BASH_SOURCE##*/}:${LINENO}] '
+  set -x
+fi
+
+READLINK=$(type -p greadlink readlink | head -1)
+if [ -z "$READLINK" ]; then
+  echo "crenv: cannot find readlink - are you missing GNU coreutils?" >&2
+  exit 1
+fi
+
+resolve_link() {
+  $READLINK "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+if [ -z "${CRENV_ROOT}" ]; then
+  CRENV_ROOT="${HOME}/.crenv"
+else
+  CRENV_ROOT="${CRENV_ROOT%/}"
+fi
+export CRENV_ROOT
+
+if [ -z "${CRENV_DIR}" ]; then
+  CRENV_DIR="$(pwd)"
+else
+  cd "$CRENV_DIR" 2>/dev/null || {
+    echo "crenv: cannot change working directory to \`$CRENV_DIR'"
+    exit 1
+  } >&2
+  CRENV_DIR="$(pwd)"
+  cd "$OLDPWD"
+fi
+export CRENV_DIR
+
+
+shopt -s nullglob
+
+bin_path="$(abs_dirname "$0")"
+for plugin_bin in "${CRENV_ROOT}/plugins/"*/bin; do
+  bin_path="${bin_path}:${plugin_bin}"
+done
+export PATH="${bin_path}:${PATH}"
+
+hook_path="${CRENV_HOOK_PATH}:${CRENV_ROOT}/crenv.d:/usr/local/etc/crenv.d:/etc/crenv.d:/usr/lib/crenv/hooks"
+for plugin_hook in "${CRENV_ROOT}/plugins/"*/etc/crenv.d; do
+  hook_path="${hook_path}:${plugin_hook}"
+done
+export CRENV_HOOK_PATH="$hook_path"
+
+shopt -u nullglob
+
+
+command="$1"
+case "$command" in
+"" | "-h" | "--help" )
+  echo -e "$(crenv---version)\n$(crenv-help)" >&2
+  ;;
+"-v" )
+  exec crenv---version
+  ;;
+* )
+  command_path="$(command -v "crenv-$command" || true)"
+  if [ -z "$command_path" ]; then
+    echo "crenv: no such command \`$command'" >&2
+    exit 1
+  fi
+
+  shift 1
+  exec "$command_path" "$@"
+  ;;
+esac
+
+# vim: se et ts=2 sw=2 sts=2 ft=sh :

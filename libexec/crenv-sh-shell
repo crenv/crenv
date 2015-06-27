@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#
+# Summary: Set or show the shell-specific Crystal version
+#
+# Usage: crenv shell <version>
+#        crenv shell --unset
+#
+# Sets a shell-specific Crystal version by setting the `CRENV_VERSION'
+# environment variable in your shell. This version overrides local
+# application-specific versions and the global version.
+#
+# <version> should be a string matching a Crystal version known to crenv.
+# The special version string `system' will use your default system Crystal.
+# Run `crenv versions' for a list of available Crystal versions.
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+# Provide crenv completions
+if [ "$1" = "--complete" ]; then
+  echo --unset
+  echo system
+  exec crenv-versions --bare
+fi
+
+version="$1"
+
+if [ -z "$version" ]; then
+  if [ -z "$CRENV_VERSION" ]; then
+    echo "crenv: no shell-specific version configured" >&2
+    exit 1
+  else
+    echo "echo \"\$CRENV_VERSION\""
+    exit
+  fi
+fi
+
+if [ "$version" = "--unset" ]; then
+  echo "unset CRENV_VERSION"
+  exit
+fi
+
+# Make sure the specified version is installed.
+if crenv-prefix "$version" >/dev/null; then
+  echo "export CRENV_VERSION=\"${version}\""
+else
+  echo "return 1"
+  exit 1
+fi

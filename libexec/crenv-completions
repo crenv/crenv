@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Usage: crenv completions <command> [arg1 arg2...]
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+COMMAND="$1"
+if [ -z "$COMMAND" ]; then
+  crenv-help --usage completions >&2
+  exit 1
+fi
+
+COMMAND_PATH="$(command -v "crenv-$COMMAND" || command -v "crenv-sh-$COMMAND")"
+if grep -i "^\([#%]\|--\|//\) provide crenv completions" "$COMMAND_PATH" >/dev/null; then
+  shift
+  exec "$COMMAND_PATH" --complete "$@"
+fi

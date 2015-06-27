@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+# Summary: Configure the shell environment for crenv
+# Usage: eval "$(crenv init - [--no-rehash] [<shell>])"
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+print=""
+no_rehash=""
+for args in "$@"
+do
+  if [ "$args" = "-" ]; then
+    print=1
+    shift
+  fi
+
+  if [ "$args" = "--no-rehash" ]; then
+    no_rehash=1
+    shift
+  fi
+done
+
+shell="$1"
+if [ -z "$shell" ]; then
+  shell="$(basename "$SHELL")"
+fi
+
+READLINK=$(type -p greadlink readlink | head -1)
+if [ -z "$READLINK" ]; then
+  echo "crenv: cannot find readlink - are you missing GNU coreutils?" >&2
+  exit 1
+fi
+
+resolve_link() {
+  $READLINK "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+root="$(abs_dirname "$0")/.."
+
+if [ -z "$print" ]; then
+  case "$shell" in
+  bash )
+    profile='~/.bash_profile'
+    ;;
+  zsh )
+    profile='~/.zshrc'
+    ;;
+  ksh )
+    profile='~/.profile'
+    ;;
+  * )
+    profile='your profile'
+    ;;
+  esac
+
+  { echo "# Load crenv automatically by adding"
+    echo "# the following to ${profile}:"
+    echo
+    echo 'eval "$(crenv init -)"'
+    echo
+  } >&2
+
+  exit 1
+fi
+
+mkdir -p "${CRENV_ROOT}/"{shims,versions}
+
+if [[ ":${PATH}:" != *:"${CRENV_ROOT}/shims":* ]]; then
+  echo 'export PATH="'${CRENV_ROOT}'/shims:${PATH}"'
+fi
+
+case "$shell" in
+bash | zsh )
+  echo "source \"$root/completions/crenv.${shell}\""
+  ;;
+esac
+
+if [ -z "$no_rehash" ]; then
+  echo 'crenv rehash 2>/dev/null'
+fi
+
+commands=(`crenv-commands --sh`)
+IFS="|"
+cat <<EOS
+crenv() {
+  typeset command
+  command="\$1"
+  if [ "\$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "\$command" in
+  ${commands[*]})
+    eval "\`crenv "sh-\$command" "\$@"\`";;
+  *)
+    command crenv "\$command" "\$@";;
+  esac
+}
+EOS

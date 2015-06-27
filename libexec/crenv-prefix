@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Summary: Display prefix for a Crystal version
+# Usage: crenv prefix [<version>]
+#
+# Displays the directory where a Crystal version is installed. If no
+# version is given, `crenv prefix' displays the location of the
+# currently selected version.
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+# Provide crenv completions
+if [ "$1" = "--complete" ]; then
+  echo system
+  exec crenv-versions --bare
+fi
+
+if [ -n "$1" ]; then
+  export CRENV_VERSION="$1"
+elif [ -z "$CRENV_VERSION" ]; then
+  CRENV_VERSION="$(crenv-version-name)"
+fi
+
+if [ "$CRENV_VERSION" = "system" ]; then
+  NODE_PATH="$(crenv-which crystal)"
+  NODE_PATH="${NODE_PATH%/*}"
+  echo "${NODE_PATH%/bin}"
+  exit
+fi
+
+CRENV_PREFIX_PATH="${CRENV_ROOT}/versions/${CRENV_VERSION}"
+if [ ! -d "$CRENV_PREFIX_PATH" ]; then
+  echo "crenv: version \`${CRENV_VERSION}' not installed" >&2
+  exit 1
+fi
+
+echo "$CRENV_PREFIX_PATH"

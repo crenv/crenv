@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# Summary: Set or show the local application-specific Crystal version
+#
+# Usage: crenv local <version>
+#        crenv local --unset
+#
+# Sets the local application-specific Crystal version by writing the
+# version name to a file named `.crystal-version'.
+#
+# When you run a Crystal command, crenv will look for a `.crystal-version'
+# file in the current directory and each parent directory. If no such
+# file is found in the tree, crenv will use the global Crystal version
+# specified with `crenv global'. A version specified with the
+# `CRENV_VERSION' environment variable takes precedence over local
+# and global versions.
+#
+# For backwards compatibility, crenv will also read version
+# specifications from `.crenv-version' files, but a `.crystal-version'
+# file in the same directory takes precedence.
+#
+# <version> should be a string matching a Crystal version known to crenv.
+# The special version string `system' will use your default system Crystal.
+# Run `crenv versions' for a list of available Crystal versions.
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+# Provide crenv completions
+if [ "$1" = "--complete" ]; then
+  echo --unset
+  echo system
+  exec crenv-versions --bare
+fi
+
+CRENV_VERSION="$1"
+
+if [ "$CRENV_VERSION" = "--unset" ]; then
+  rm -f .crystal-version .crenv-version
+elif [ -n "$CRENV_VERSION" ]; then
+  previous_file="$(CRENV_VERSION= crenv-version-origin || true)"
+  crenv-version-file-write .crystal-version "$CRENV_VERSION"
+  if [ "$previous_file" -ef .crenv-version ]; then
+    rm -f .crenv-version
+    { echo "crenv: removed existing \`.crenv-version' file and migrated"
+      echo "       local version specification to \`.crystal-version' file"
+    } >&2
+  fi
+else
+  crenv-version-file-read .crystal-version ||
+  crenv-version-file-read .crenv-version ||
+  { echo "crenv: no local version configured for this directory"
+    exit 1
+  } >&2
+fi

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Usage: crenv version-file-write <file> <version>
+
+set -e
+[ -n "$CRENV_DEBUG" ] && set -x
+
+CRENV_VERSION_FILE="$1"
+CRENV_VERSION="$2"
+
+if [ -z "$CRENV_VERSION" ] || [ -z "$CRENV_VERSION_FILE" ]; then
+  crenv-help --usage version-file-write >&2
+  exit 1
+fi
+
+# Make sure the specified version is installed.
+crenv-prefix "$CRENV_VERSION" >/dev/null
+
+# Write the version out to disk.
+echo "$CRENV_VERSION" > "$CRENV_VERSION_FILE"
