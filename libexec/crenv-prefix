@@ -22,9 +22,9 @@ elif [ -z "$CRENV_VERSION" ]; then
 fi
 
 if [ "$CRENV_VERSION" = "system" ]; then
-  NODE_PATH="$(crenv-which crystal)"
-  NODE_PATH="${NODE_PATH%/*}"
-  echo "${NODE_PATH%/bin}"
+  CRYSTAL_PATH="$(crenv-which crystal)"
+  CRYSTAL_PATH="${CRYSTAL_PATH%/*}"
+  echo "${CRYSTAL_PATH%/bin}"
   exit
 fi
 
