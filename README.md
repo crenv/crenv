@@ -37,9 +37,9 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 ## Acknowledgement
 
-- [riywo](https://github.com/riywo)
-crenv is based [ndenv](https://github.com/riywo/ndenv). Thank you.
-- [hokaccha](https://github.com/hokaccha)
+- [riywo](https://github.com/riywo)<br />
+crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
+- [hokaccha](https://github.com/hokaccha)<br />
 crenv-install is based [nodebrew](https://github.com/hokaccha/nodebrew). Thank you.
 
 ## See also
