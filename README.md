@@ -12,6 +12,8 @@ $ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
 $ exec $SHELL -l
 ```
 
+I recommend using crystal-build for installing node itself. See also [crystal-build](https://github.com/pine613/crystal-build).
+
 ## Usage
 
 Please see help.
