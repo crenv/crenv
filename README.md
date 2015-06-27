@@ -14,6 +14,18 @@ $ exec $SHELL -l
 
 I recommend using crystal-build for installing Crystal itself. See also [crystal-build](https://github.com/pine613/crystal-build).
 
+```
+$ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crystal-build
+```
+
+If you installed crystal-build plugin, you may installed Crystal as following.
+
+```
+$ crenv install 0.7.4
+$ crenv rehash
+```
+
+
 ## Usage
 
 Please see help.
