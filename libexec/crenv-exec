@@ -43,6 +43,6 @@ done
 shift 1
 if [ "$CRENV_VERSION" != "system" ]; then
   export PATH="${CRENV_BIN_PATH}:${PATH}"
-  export CRYSTAL_PATH="${CRENV_ROOT}/versions/$(crenv-version-name)/lib/crystal_modules:${CRYSTAL_PATH}"
+  export CRYSTAL_PATH="${CRENV_ROOT}/versions/$(crenv-version-name)/src:libs"
 fi
 exec -a "$CRENV_COMMAND" "$CRENV_COMMAND_PATH" "$@"
