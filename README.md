@@ -3,6 +3,15 @@ crenv
 
 [Crystal](http://crystal-lang.org/) version manager.
 
+## Install using anyenv
+
+If you used [anyenv](https://github.com/riywo/anyenv), it might be very easy for you to install crenv !
+
+```
+$ anyenv install crenv
+$ exec $SHELL -l
+```
+
 ## Install
 
 ```
