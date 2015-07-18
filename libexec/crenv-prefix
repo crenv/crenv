@@ -22,10 +22,14 @@ elif [ -z "$CRENV_VERSION" ]; then
 fi
 
 if [ "$CRENV_VERSION" = "system" ]; then
-  CRYSTAL_PATH="$(crenv-which crystal)"
-  CRYSTAL_PATH="${CRYSTAL_PATH%/*}"
-  echo "${CRYSTAL_PATH%/bin}"
-  exit
+  if CRYSTAL_PATH="$(crenv-which crystal 2>/dev/null)"; then
+    CRYSTAL_PATH="${CRYSTAL_PATH%/*}"
+    echo "${CRYSTAL_PATH%/bin}"
+    exit
+  else
+    echo "crenv: system version not found in PATH" >&2
+    exit 1
+  fi
 fi
 
 CRENV_PREFIX_PATH="${CRENV_ROOT}/versions/${CRENV_VERSION}"

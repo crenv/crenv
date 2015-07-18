@@ -61,15 +61,20 @@ shopt -s nullglob
 
 bin_path="$(abs_dirname "$0")"
 for plugin_bin in "${CRENV_ROOT}/plugins/"*/bin; do
-  bin_path="${bin_path}:${plugin_bin}"
+  PATH="${plugin_bin}:${PATH}"
 done
 export PATH="${bin_path}:${PATH}"
 
-hook_path="${CRENV_HOOK_PATH}:${CRENV_ROOT}/crenv.d:/usr/local/etc/crenv.d:/etc/crenv.d:/usr/lib/crenv/hooks"
+CRENV_HOOK_PATH="${CRENV_HOOK_PATH}:${CRENV_ROOT}/crenv.d"
+if [ "${bin_path%/*}" != "$CRENV_ROOT" ]; then
+  # Add crenv's own `crenv.d` unless crenv was cloned to CRENV_ROOT
+  CRENV_HOOK_PATH="${CRENV_HOOK_PATH}:${bin_path%/*}/crenv.d"
+fi
+CRENV_HOOK_PATH="${CRENV_HOOK_PATH}:/usr/local/etc/crenv.d:/etc/crenv.d:/usr/lib/crenv/hooks"
 for plugin_hook in "${CRENV_ROOT}/plugins/"*/etc/crenv.d; do
-  hook_path="${hook_path}:${plugin_hook}"
+  CRENV_HOOK_PATH="${CRENV_HOOK_PATH}:${plugin_hook}"
 done
-export CRENV_HOOK_PATH="$hook_path"
+export CRENV_HOOK_PATH
 
 shopt -u nullglob
 

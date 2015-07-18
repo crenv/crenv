@@ -24,6 +24,7 @@ if [ "$1" = "--complete" ]; then
 fi
 
 version="$1"
+shell="$(basename "${CRENV_SHELL:-$SHELL}")"
 
 if [ -z "$version" ]; then
   if [ -z "$CRENV_VERSION" ]; then
@@ -36,14 +37,28 @@ if [ -z "$version" ]; then
 fi
 
 if [ "$version" = "--unset" ]; then
-  echo "unset CRENV_VERSION"
+  case "$shell" in
+  fish )
+    echo "set -e CRENV_VERSION"
+    ;;
+  * )
+    echo "unset CRENV_VERSION"
+    ;;
+  esac
   exit
 fi
 
 # Make sure the specified version is installed.
 if crenv-prefix "$version" >/dev/null; then
-  echo "export CRENV_VERSION=\"${version}\""
+  case "$shell" in
+  fish )
+    echo "setenv CRENV_VERSION \"${version}\""
+    ;;
+  * )
+    echo "export CRENV_VERSION=\"${version}\""
+    ;;
+  esac
 else
-  echo "return 1"
+  echo "false"
   exit 1
 fi
