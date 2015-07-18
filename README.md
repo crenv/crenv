@@ -62,6 +62,18 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 You might want to see [rbenv#command-reference](https://github.com/sstephenson/rbenv#command-reference) if you been looking for command reference.
 
+### Installing Crystal Versions
+
+The crenv install command doesn't ship with crenv out of the box, but is provided by the [crystal-build](https://github.com/pine613/crystal-build) project.
+
+```
+# list all available versions:
+$ crenv install -l
+
+# install a Crystal version:
+$ crenv install 0.7.4
+```
+
 ## Acknowledgement
 
 - [riywo](https://github.com/riywo)<br />
