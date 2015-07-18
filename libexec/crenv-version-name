@@ -21,11 +21,9 @@ version_exists() {
 if version_exists "$CRENV_VERSION"; then
   echo "$CRENV_VERSION"
 elif version_exists "${CRENV_VERSION#crystal-}"; then
-  { echo "warning: ignoring extraneous \`crystal-' prefix in version \`${CRENV_VERSION}'"
-    echo "         (set by $(crenv-version-origin))"
-  } >&2
+  echo "warning: ignoring extraneous \`crystal-' prefix in version \`${CRENV_VERSION}'" >&2
   echo "${CRENV_VERSION#crystal-}"
 else
-  echo "crenv: version \`$CRENV_VERSION' is not installed" >&2
+  echo "crenv: version \`$CRENV_VERSION' is not installed (set by $(crenv-version-origin))" >&2
   exit 1
 fi

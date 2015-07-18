@@ -7,7 +7,17 @@ if [ "$1" = "--complete" ]; then
   exec crenv-rehash --complete
 fi
 
+shell="$(basename "${CRENV_SHELL:-$SHELL}")"
+
 # When crenv shell integration is enabled, delegate to crenv-rehash,
 # then tell the shell to empty its command lookup cache.
 crenv-rehash
-echo "hash -r 2>/dev/null || true"
+
+case "$shell" in
+fish )
+  # no rehash support
+  ;;
+* )
+  echo "hash -r 2>/dev/null || true"
+  ;;
+esac

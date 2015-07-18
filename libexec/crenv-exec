@@ -7,11 +7,11 @@
 # Runs an executable by first preparing PATH so that the selected Crystal
 # version's `bin' directory is at the front.
 #
-# For example, if the currently selected Crystal version is 0.10.12:
-#   crenv exec npm install
+# For example, if the currently selected Crystal version is 0.7.4:
+#   crenv exec crystal deps
 #
 # is equivalent to:
-#   PATH="$CRENV_ROOT/versions/0.10.12/bin:$PATH" npm install
+#   PATH="$CRENV_ROOT/versions/0.7.4/bin:$PATH" crystal deps
 
 set -e
 [ -n "$CRENV_DEBUG" ] && set -x

@@ -1,6 +1,8 @@
 crenv
 -----
 
+[![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
+
 [Crystal](http://crystal-lang.org/) version manager. crenv is inspired by [rbenv](https://github.com/sstephenson/rbenv).
 
 ## Install using anyenv
@@ -64,6 +66,8 @@ You might want to see [rbenv#command-reference](https://github.com/sstephenson/r
 
 - [riywo](https://github.com/riywo)<br />
 crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
+- [sstephenson](https://github.com/sstephenson)<br />
+crenv is copied code from [rbenv](https://github.com/sstephenson/rbenv). Thank you.
 
 ## See also
 - [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager

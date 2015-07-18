@@ -1,0 +1,12 @@
+sudo: false
+language: c
+
+install:
+  - git clone --depth 1 https://github.com/sstephenson/bats.git
+
+script:
+  - PATH="./bats/bin:$PATH" test/run
+
+notifications:
+  slack:
+    - secure: "l1etrbGcp+Fb1YmE5QQQuZG2owlnb7YAPoIdlG5QV8SbcXf2rgb3tS7Sqa3kLht/pN0BqdekSgOQ6Vk+KNLhsC1J93F95qWiBR+hlq11609DK85BPH8iFC34vWDpE14xAVD9rBqL3k0vxXJyjcjjJD8WHi/NNKBwMZNmnnPn49C0xMTwAbcYYGDvi0m7fQU2T5uirJeqYepC/P6xboXsDAegOFFkdm6mtV4DFOu2bsyQXKHRnHQ1b023MbBZMDC71ZDs3ROvR5tJYdR6BdnoXJeU9hHWT5fI6PdtXlGZkkLc6SuE7GMJi22AjeGbPMdvJvUi2Ys+BE35HS0SWmFfmMn6827HAwnvcrE8uidj6Fn3LzA6a4j+Hi4ez9KYez2+Q9rwXlArRqlTZkUlYe+dhaPo5wi6CFNPa4clu/GpCRO3q31KPWfkv00v1SehS48pcICnL49vco1l9CuRwqtEScLm2IAfdp6UPPJ1INTST1dIYcR9NYH20HQLGB3xa4H4DX0OaaeFep+OSrLRbw8FB3FRvFVPKgQ3CTkIkzsibUnJTms7oq17bZiXgfDQSoL81tN5DfV9LgT9gtCobo+7q/mYQndGK51QrSpIeNorjNhESzJQqMClMIBDaAbyr4zO5NrG3FK4iUweoHv+3qneTLM/O4jlgbzZhcl2a+IlzGY="
