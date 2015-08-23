@@ -32,7 +32,7 @@ $ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crysta
 If you installed crystal-build plugin, you may installed Crystal as following.
 
 ```
-$ crenv install 0.7.4
+$ crenv install 0.7.6
 $ crenv rehash
 ```
 
@@ -71,7 +71,7 @@ The crenv install command doesn't ship with crenv out of the box, but is provide
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.7.4
+$ crenv install 0.7.6
 ```
 
 ## Acknowledgement
