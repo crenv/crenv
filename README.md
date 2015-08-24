@@ -5,7 +5,7 @@ crenv
 
 [Crystal](http://crystal-lang.org/) version manager. crenv is inspired by [rbenv](https://github.com/sstephenson/rbenv).
 
-|English|[日本語](README.ja.md)|
+English | [日本語](README.ja.md)
 
 ## Install using anyenv
 

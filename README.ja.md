@@ -3,7 +3,7 @@ crenv
 
 [![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
 
-|[English](README.md)|日本語|
+[English](README.md) | 日本語
 
 crenv は [rbenv](https://github.com/sstephenson/rbenv) にインスパイアされた [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
 
@@ -34,7 +34,7 @@ $ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crysta
 crystal-build がインストールされている場合、以下のコマンドで Crystal をインストールできます。
 
 ```
-$ crenv install 0.7.4
+$ crenv install 0.7.6
 $ crenv rehash
 ```
 
@@ -73,7 +73,7 @@ crenv は単体で Crystal のインストール機能を搭載していませ�
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.7.4
+$ crenv install 0.7.6
 ```
 
 ## 謝辞
