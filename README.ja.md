@@ -35,7 +35,10 @@ crystal-build がインストールされている場合、以下のコマンド
 
 ```
 $ crenv install 0.7.6
+$ crenv global 0.7.6
 $ crenv rehash
+$ crystal --version
+Crystal 0.7.6 [eb13f75] (Thu Aug 13 21:39:15 UTC 2015)
 ```
 
 
