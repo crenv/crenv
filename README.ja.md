@@ -112,4 +112,4 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## 作者
-Pine Mizune &lt;<pinemz@gmail.com>&gt;
+水音ぴね &lt;<pinemz@gmail.com>&gt;
