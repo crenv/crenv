@@ -79,6 +79,10 @@ $ crenv install -l
 $ crenv install 0.7.6
 ```
 
+## Roadmap
+
+- Support [shards](https://github.com/ysbaddaden/shards)
+
 ## Acknowledgement
 
 - [riywo](https://github.com/riywo)<br />
