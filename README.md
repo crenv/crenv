@@ -77,6 +77,19 @@ $ crenv install -l
 
 # install a Crystal version:
 $ crenv install 0.8.0
+
+# set global Crystal version:
+$ crenv global 0.8.8
+```
+
+### Updateing crenv
+Please execute following commands to update crenv.
+
+```
+$ cd ~/.crenv # or ~/.anyenv/envs/crenv
+$ git pull origin master
+$ cd plugins/crystal-build
+$ git pull origin master
 ```
 
 ## Roadmap
