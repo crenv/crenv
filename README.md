@@ -39,6 +39,8 @@ $ crenv global 0.8.0
 $ crenv rehash
 $ crystal --version
 Crystal 0.8.0 [e363b63] (Sat Sep 19 12:18:15 UTC 2015)
+$ shards --version
+Shards 0.4.0 (2015-09-23)
 ```
 
 
