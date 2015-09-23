@@ -7,7 +7,7 @@ crenv
 
 English | [日本語](README.ja.md)
 
-## Install using anyenv
+## Install (for anyenv users)
 
 If you used [anyenv](https://github.com/riywo/anyenv), it might be very easy for you to install crenv !
 
@@ -16,7 +16,7 @@ $ anyenv install crenv
 $ exec $SHELL -l
 ```
 
-## Install
+## Install (for everyone)
 
 ```
 $ git clone https://github.com/pine613/crenv ~/.crenv
