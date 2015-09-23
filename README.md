@@ -94,7 +94,8 @@ $ git pull origin master
 
 ## Roadmap
 
-- Support [shards](https://github.com/ysbaddaden/shards)
+- ~~Support [shards](https://github.com/ysbaddaden/shards)~~
+  - shards has be already supported. Please try to update crenv & crystal-build
 
 ## Acknowledgement
 
