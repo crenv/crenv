@@ -94,11 +94,6 @@ $ cd plugins/crystal-build
 $ git pull origin master
 ```
 
-## Roadmap
-
-- ~~Support [shards](https://github.com/ysbaddaden/shards)~~
-  - shards has be already supported. Please try to update crenv & crystal-build
-
 ## Acknowledgement
 
 - [riywo](https://github.com/riywo)<br />
