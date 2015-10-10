@@ -79,6 +79,16 @@ $ crenv install -l
 $ crenv install 0.8.0
 ```
 
+### crenv を更新する
+crenv を更新するには、以下のコマンドを実行してください。
+
+```
+$ cd ~/.crenv # or ~/.anyenv/envs/crenv
+$ git pull origin master
+$ cd plugins/crystal-build
+$ git pull origin master
+```
+
 ## 謝辞
 
 - [riywo](https://github.com/riywo)
