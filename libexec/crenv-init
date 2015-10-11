@@ -99,9 +99,10 @@ fish )
 function crenv
   set command \$argv[1]
   set -e argv[1]
+
   switch "\$command"
   case ${commands[*]}
-    eval (crenv "sh-\$command" \$argv)
+    . (rbenv "sh-\$command" \$argv|psub)
   case '*'
     command crenv "\$command" \$argv
   end
