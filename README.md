@@ -7,7 +7,7 @@ crenv
 
 English | [日本語](README.ja.md)
 
-## Install using anyenv
+## Install (for anyenv users)
 
 If you used [anyenv](https://github.com/riywo/anyenv), it might be very easy for you to install crenv !
 
@@ -16,7 +16,7 @@ $ anyenv install crenv
 $ exec $SHELL -l
 ```
 
-## Install
+## Install (for everyone)
 
 ```
 $ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
@@ -33,6 +33,8 @@ $ crenv global 0.8.0
 $ crenv rehash
 $ crystal --version
 Crystal 0.8.0 [e363b63] (Sat Sep 19 12:18:15 UTC 2015)
+$ shards --version
+Shards 0.4.0 (2015-09-23)
 ```
 
 
@@ -71,11 +73,20 @@ $ crenv install -l
 
 # install a Crystal version:
 $ crenv install 0.8.0
+
+# set global Crystal version:
+$ crenv global 0.8.8
 ```
 
-## Roadmap
+### Updateing crenv
+Please execute following commands to update crenv.
 
-- Support [shards](https://github.com/ysbaddaden/shards)
+```
+$ cd ~/.crenv # or ~/.anyenv/envs/crenv
+$ git pull origin master
+$ cd plugins/crystal-build
+$ git pull origin master
+```
 
 ## Acknowledgement
 

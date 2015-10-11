@@ -5,11 +5,11 @@ crenv
 
 [English](README.md) | 日本語
 
-crenv は [rbenv](https://github.com/sstephenson/rbenv) にインスパイアされた [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
+crenv は Ruby の [rbenv](https://github.com/sstephenson/rbenv) と同じ使い方ができる [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
 
 ## anyenv を使ってインストール
 
-あなたが [anyenv](https://github.com/riywo/anyenv) を使用している場合、crenv をインストールするのはとても容易です。
+あなたが [anyenv](https://github.com/riywo/anyenv) を使用している場合、crenv は以下のコマンドでインストールできます。
 
 ```
 $ anyenv install crenv
@@ -25,7 +25,7 @@ $ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
 $ exec $SHELL -l
 ```
 
-Crystal をインストールするために、[crystal-build](https://github.com/pine613/crystal-build) を同時にインストールすることをオススメします。
+Crystal をインストールするためには [crystal-build](https://github.com/pine613/crystal-build) を同時にインストールする必要があります。
 
 ```
 $ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crystal-build
@@ -34,11 +34,11 @@ $ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crysta
 crystal-build がインストールされている場合、以下のコマンドで Crystal をインストールできます。
 
 ```
-$ crenv install 0.7.6
-$ crenv global 0.7.6
+$ crenv install 0.8.0
+$ crenv global 0.8.0
 $ crenv rehash
 $ crystal --version
-Crystal 0.7.6 [eb13f75] (Thu Aug 13 21:39:15 UTC 2015)
+Crystal 0.8.0 [e363b63] (Sat Sep 19 12:18:15 UTC 2015)
 ```
 
 
@@ -76,7 +76,17 @@ crenv は単体で Crystal のインストール機能を搭載していませ�
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.7.6
+$ crenv install 0.8.0
+```
+
+### crenv を更新する
+crenv を更新するには、以下のコマンドを実行してください。
+
+```
+$ cd ~/.crenv # or ~/.anyenv/envs/crenv
+$ git pull origin master
+$ cd plugins/crystal-build
+$ git pull origin master
 ```
 
 ## 謝辞
