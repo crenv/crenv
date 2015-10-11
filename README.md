@@ -20,9 +20,12 @@ $ exec $SHELL -l
 
 ```
 $ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
-$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
-$ exec $SHELL -l
+```
+
+or
+
+```
+$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
 ```
 
 If you installed crenv, you may installed Crystal as following.
