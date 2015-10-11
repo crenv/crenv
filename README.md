@@ -19,19 +19,13 @@ $ exec $SHELL -l
 ## Install
 
 ```
-$ git clone https://github.com/pine613/crenv ~/.crenv
+$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
 $ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
 $ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
 $ exec $SHELL -l
 ```
 
-I recommend using crystal-build for installing Crystal itself. See also [crystal-build](https://github.com/pine613/crystal-build).
-
-```
-$ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crystal-build
-```
-
-If you installed crystal-build plugin, you may installed Crystal as following.
+If you installed crenv, you may installed Crystal as following.
 
 ```
 $ crenv install 0.8.0
