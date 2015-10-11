@@ -14,7 +14,7 @@ load test_helper
 @test "auto rehash" {
   run crenv-init -
   assert_success
-  assert_line "crenv rehash 2>/dev/null"
+  assert_line "command crenv rehash 2>/dev/null"
 }
 
 @test "setup shell completions" {

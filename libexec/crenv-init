@@ -89,7 +89,7 @@ if [ -r "$completion" ]; then
 fi
 
 if [ -z "$no_rehash" ]; then
-  echo 'crenv rehash 2>/dev/null'
+  echo 'command crenv rehash 2>/dev/null'
 fi
 
 commands=(`crenv-commands --sh`)
