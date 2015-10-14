@@ -13,22 +13,28 @@ $ anyenv install crenv
 $ exec $SHELL -l
 ```
 
-## インストール
+## 通常インストール
+以下のコマンドを使ってインストールが可能です。
 
 ```
-$ git clone https://github.com/pine613/crenv ~/.crenv
+$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+```
+
+もしくは、`wget` を用いる場合、
+```
+$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
+
+```
+
+インストール後は、下記コマンドのようにシェルの設定を追記する必要があります。
+
+```
 $ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
 $ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
 $ exec $SHELL -l
 ```
 
-Crystal をインストールするためには [crystal-build](https://github.com/pine613/crystal-build) を同時にインストールする必要があります。
-
-```
-$ git clone https://github.com/pine613/crystal-build.git ~/.crenv/plugins/crystal-build
-```
-
-crystal-build がインストールされている場合、以下のコマンドで Crystal をインストールできます。
+上記の方法で crenv が正しくインストールされている場合、以下のコマンドで Crystal をインストールできます。
 
 ```
 $ crenv install 0.8.0
