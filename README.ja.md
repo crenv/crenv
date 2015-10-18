@@ -4,9 +4,9 @@
 
 crenv は Ruby の [rbenv](https://github.com/sstephenson/rbenv) と同じ使い方ができる [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
 
-## anyenv を使ってインストール
+## anyenv を使ったインストール方法
 
-あなたが [anyenv](https://github.com/riywo/anyenv) を使用している場合、crenv は以下のコマンドでインストールできます。
+[anyenv](https://github.com/riywo/anyenv) を使うと、コマンド一つでに crenv をインストールできます。
 
 ```
 $ anyenv install crenv
