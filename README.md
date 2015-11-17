@@ -28,13 +28,13 @@ $ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
 If you installed crenv, you may installed Crystal as following.
 
 ```
-$ crenv install 0.8.0
-$ crenv global 0.8.0
+$ crenv install 0.9.1
+$ crenv global 0.9.1
 $ crenv rehash
 $ crystal --version
-Crystal 0.8.0 [e363b63] (Sat Sep 19 12:18:15 UTC 2015)
+Crystal 0.9.1 [b3b1223] (Fri Oct 30 03:26:53 UTC 2015)
 $ shards --version
-Shards 0.4.0 (2015-09-23)
+Shards 0.5.3 [7bd60f1] (2015-10-30)
 ```
 
 
