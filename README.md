@@ -72,10 +72,10 @@ The crenv install command doesn't ship with crenv out of the box, but is provide
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.8.0
+$ crenv install 0.9.1
 
 # set global Crystal version:
-$ crenv global 0.8.8
+$ crenv global 0.9.1
 ```
 
 ### Updateing crenv
