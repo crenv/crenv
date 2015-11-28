@@ -6,7 +6,7 @@ crenv は Ruby の [rbenv](https://github.com/sstephenson/rbenv) と同じ使い
 
 ## anyenv を使ったインストール方法
 
-[anyenv](https://github.com/riywo/anyenv) を使うと、コマンド一つでに crenv をインストールできます。
+[anyenv](https://github.com/riywo/anyenv) を利用すると、たったのコマンド一つで crenv をインストールできます。
 
 ```
 $ anyenv install crenv
@@ -20,10 +20,10 @@ $ exec $SHELL -l
 $ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
 ```
 
-もしくは、`wget` を用いる場合、
+`curl` ではなく、`wget` を用いる場合、
+
 ```
 $ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
-
 ```
 
 インストール後は、下記コマンドのようにシェルの設定を追記する必要があります。
