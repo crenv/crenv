@@ -68,6 +68,12 @@ create_executable() {
   assert_failure "crenv: rake: command not found"
 }
 
+@test "no executable found for system version" {
+  export PATH="$(path_without "shards")"
+  RBENV_VERSION=system run crenv-which shards
+  assert_failure "crenv: shards: command not found"
+}
+
 @test "executable found in other versions" {
   create_executable "1.8" "ruby"
   create_executable "1.9" "rspec"
@@ -100,12 +106,12 @@ SH
 
 @test "discovers version from crenv-version-name" {
   mkdir -p "$CRENV_ROOT"
-  cat > "${CRENV_ROOT}/version" <<<"1.8"
-  create_executable "1.8" "ruby"
+  cat > "${CRENV_ROOT}/version" <<<"0.9.1"
+  create_executable "0.9.1" "crystal"
 
   mkdir -p "$CRENV_TEST_DIR"
   cd "$CRENV_TEST_DIR"
 
-  CRENV_VERSION= run crenv-which ruby
-  assert_success "${CRENV_ROOT}/versions/1.8/bin/ruby"
+  CRENV_VERSION= run crenv-which crystal
+  assert_success "${CRENV_ROOT}/versions/0.9.1/bin/crystal"
 }
