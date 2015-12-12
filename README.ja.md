@@ -95,9 +95,12 @@ $ git pull origin master
 ```
 
 ## 謝辞
+この場を借りて、お礼申し上げます。
 
-- [riywo](https://github.com/riywo)
-- [sstephenson](https://github.com/sstephenson)
+- [riywo](https://github.com/riywo)<br />
+crenv は [ndenv](https://github.com/riywo/ndenv) よりフォークして作成されました。
+- [sstephenson](https://github.com/sstephenson)<br />
+crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピーして作成されています。
 
 ## 参照
 - [crystalbrew](https://github.com/pine613/crystalbrew) 別の Crystal バージョンマネージャー
