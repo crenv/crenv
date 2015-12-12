@@ -93,7 +93,7 @@ $ git pull origin master
 - [riywo](https://github.com/riywo)<br />
 crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
 - [sstephenson](https://github.com/sstephenson)<br />
-crenv is copied code from [rbenv](https://github.com/sstephenson/rbenv). Thank you.
+crenv is copied code from [rbenv](https://github.com/rbenv/rbenv). Thank you.
 
 ## See also
 - [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager
