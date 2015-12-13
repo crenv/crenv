@@ -20,6 +20,14 @@ create_executable() {
   assert_failure "crenv: version \`2.0' is not installed (set by CRENV_VERSION environment variable)"
 }
 
+@test "fails with invalid version set from file" {
+  mkdir -p "$CRENV_TEST_DIR"
+  cd "$CRENV_TEST_DIR"
+  echo 0.9.1 > .crystal-version
+  run crenv-exec shards
+  assert_failure "crenv: version \`0.9.1' is not installed (set by $PWD/.crystal-version)"
+}
+
 @test "completes with names of executables" {
   export CRENV_VERSION="2.0"
   create_executable "crystal" "#!/bin/sh"
