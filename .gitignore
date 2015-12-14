@@ -1,2 +1,7 @@
 *~
 *.swp
+/version
+/cache/
+/plugins/
+/shims/
+/versions/
