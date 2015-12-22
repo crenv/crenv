@@ -105,6 +105,14 @@ crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピ
 ## 参照
 - [crystalbrew](https://github.com/pine613/crystalbrew) 別の Crystal バージョンマネージャー
 
+## パッチの送付方法
+
+1. このリポジトリをフォークします ( https://github.com/pine613/crenv/fork )
+2. フォーク先で新しいブランチを切ります (git checkout -b my-new-feature)
+3. 変更をコミットしてください (git commit -am 'Add some feature')
+4. フォーク先にプッシュします (git push origin my-new-feature)
+5. このリポジトリへプルリクエストを作成してください
+
 ## ライセンス
 (The MIT license)
 
