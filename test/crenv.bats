@@ -5,7 +5,7 @@ load test_helper
 @test "blank invocation" {
   run crenv
   assert_success
-  assert [ "${lines[0]}" = "crenv 0.1.3" ]
+  assert [ "${lines[0]}" = "crenv 0.1.4" ]
 }
 
 @test "invalid command" {
