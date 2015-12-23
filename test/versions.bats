@@ -139,3 +139,18 @@ OUT
 1.8.7
 OUT
 }
+
+@test "doesn't list symlink aliases when --skip-aliases" {
+  create_version "0.7.1"
+  ln -s "0.7.1" "${CRENV_ROOT}/versions/0.7"
+  mkdir moo
+  ln -s "${PWD}/moo" "${CRENV_ROOT}/versions/0.8"
+
+  run crenv-versions --bare --skip-aliases
+  assert_success
+
+  assert_output <<OUT
+0.7.1
+0.8
+OUT
+}
