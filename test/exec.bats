@@ -15,9 +15,9 @@ create_executable() {
 }
 
 @test "fails with invalid version" {
-  export CRENV_VERSION="2.0"
+  export CRENV_VERSION="0.10.0"
   run crenv-exec crystal --version
-  assert_failure "crenv: version \`2.0' is not installed (set by CRENV_VERSION environment variable)"
+  assert_failure "crenv: version \`0.10.0' is not installed (set by CRENV_VERSION environment variable)"
 }
 
 @test "fails with invalid version set from file" {
@@ -29,7 +29,7 @@ create_executable() {
 }
 
 @test "completes with names of executables" {
-  export CRENV_VERSION="2.0"
+  export CRENV_VERSION="0.10.0"
   create_executable "crystal" "#!/bin/sh"
   create_executable "test" "#!/bin/sh"
 
@@ -68,7 +68,7 @@ SH
 }
 
 @test "forwards all arguments" {
-  export CRENV_VERSION="2.0"
+  export CRENV_VERSION="0.10.0"
   create_executable "crystal" <<SH
 #!$BASH
 echo \$0
@@ -81,7 +81,7 @@ SH
   run crenv-exec crystal -w "/path to/crystal script.rb" -- extra args
   assert_success
   assert_output <<OUT
-${CRENV_ROOT}/versions/2.0/bin/crystal
+${CRENV_ROOT}/versions/0.10.0/bin/crystal
   -w
   /path to/crystal script.rb
   --
