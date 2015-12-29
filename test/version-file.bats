@@ -12,29 +12,15 @@ create_file() {
   touch "$1"
 }
 
-@test "prints global file if no version files exist" {
-  assert [ ! -e "${CRENV_ROOT}/version" ]
-  assert [ ! -e ".crystal-version" ]
+@test "detects global 'version' file" {
+  create_file "${CRENV_ROOT}/version"
   run crenv-version-file
   assert_success "${CRENV_ROOT}/version"
 }
 
-@test "detects 'global' file" {
-  create_file "${CRENV_ROOT}/global"
-  run crenv-version-file
-  assert_success "${CRENV_ROOT}/global"
-}
-
-@test "detects 'default' file" {
-  create_file "${CRENV_ROOT}/default"
-  run crenv-version-file
-  assert_success "${CRENV_ROOT}/default"
-}
-
-@test "'version' has precedence over 'global' and 'default'" {
-  create_file "${CRENV_ROOT}/version"
-  create_file "${CRENV_ROOT}/global"
-  create_file "${CRENV_ROOT}/default"
+@test "prints global file if no version files exist" {
+  assert [ ! -e "${CRENV_ROOT}/version" ]
+  assert [ ! -e ".crystal-version" ]
   run crenv-version-file
   assert_success "${CRENV_ROOT}/version"
 }

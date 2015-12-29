@@ -3,31 +3,33 @@
 set -e
 [ -n "$CRENV_DEBUG" ] && set -x
 
+target_dir="$1"
+
 find_local_version_file() {
   local root="$1"
-  while [ -n "$root" ]; do
+  while ! [[ "$root" =~ ^//[^/]*$ ]]; do
     if [ -e "${root}/.crystal-version" ]; then
       echo "${root}/.crystal-version"
-      exit
+      return 0
     elif [ -e "${root}/.crenv-version" ]; then
       echo "${root}/.crenv-version"
-      exit
+      return 0
     fi
+    [ -n "$root" ] || break
     root="${root%/*}"
   done
+  return 1
 }
 
-find_local_version_file "$CRENV_DIR"
-[ "$CRENV_DIR" = "$PWD" ] || find_local_version_file "$PWD"
-
-global_version_file="${CRENV_ROOT}/version"
-
-if [ -e "$global_version_file" ]; then
+find_global_version_file() {
+  local global_version_file="${CRENV_ROOT}/version"
   echo "$global_version_file"
-elif [ -e "${CRENV_ROOT}/global" ]; then
-  echo "${CRENV_ROOT}/global"
-elif [ -e "${CRENV_ROOT}/default" ]; then
-  echo "${CRENV_ROOT}/default"
+}
+
+if [ -n "$target_dir" ]; then
+  find_local_version_file "$target_dir"
 else
-  echo "$global_version_file"
+  find_local_version_file "$CRENV_DIR" || {
+    [ "$CRENV_DIR" != "$PWD" ] && find_local_version_file "$PWD"
+  } || find_global_version_file
 fi
