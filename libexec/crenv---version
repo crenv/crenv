@@ -13,8 +13,9 @@ set -e
 [ -n "$CRENV_DEBUG" ] && set -x
 
 version="0.1.4"
+git_revision=""
 
-if cd "$CRENV_ROOT" 2>/dev/null; then
+if cd "${BASH_SOURCE%/*}" 2>/dev/null && git remote -v 2>/dev/null | grep -q crenv; then
   git_revision="$(git describe --tags HEAD 2>/dev/null || true)"
   git_revision="${git_revision#v}"
 fi
