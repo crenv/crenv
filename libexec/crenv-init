@@ -102,7 +102,7 @@ function crenv
 
   switch "\$command"
   case ${commands[*]}
-    . (rbenv "sh-\$command" \$argv|psub)
+    . (crenv "sh-\$command" \$argv|psub)
   case '*'
     command crenv "\$command" \$argv
   end
