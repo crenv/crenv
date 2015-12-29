@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Usage: crenv version-file-read <file>
 set -e
-[ -n "$RBENV_DEBUG" ] && set -x
+[ -n "$CRENV_DEBUG" ] && set -x
 
 VERSION_FILE="$1"
 
