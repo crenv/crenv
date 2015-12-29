@@ -35,7 +35,7 @@ create_executable() {
   create_executable "${CRENV_TEST_DIR}/bin" "kill-all-humans"
   create_executable "${CRENV_ROOT}/shims" "kill-all-humans"
 
-  PATH="${CRENV_ROOT}/shims:$PATH" RBENV_VERSION=system run crenv-which kill-all-humans
+  PATH="${CRENV_ROOT}/shims:$PATH" CRENV_VERSION=system run crenv-which kill-all-humans
   assert_success "${CRENV_TEST_DIR}/bin/kill-all-humans"
 }
 
@@ -43,7 +43,7 @@ create_executable() {
   create_executable "${CRENV_TEST_DIR}/bin" "kill-all-humans"
   create_executable "${CRENV_ROOT}/shims" "kill-all-humans"
 
-  PATH="$PATH:${CRENV_ROOT}/shims" RBENV_VERSION=system run crenv-which kill-all-humans
+  PATH="$PATH:${CRENV_ROOT}/shims" CRENV_VERSION=system run crenv-which kill-all-humans
   assert_success "${CRENV_TEST_DIR}/bin/kill-all-humans"
 }
 
@@ -51,7 +51,7 @@ create_executable() {
   create_executable "${CRENV_TEST_DIR}/bin" "kill-all-humans"
   create_executable "${CRENV_ROOT}/shims" "kill-all-humans"
 
-  PATH="${CRENV_ROOT}/shims:${RBENV_ROOT}/shims:/tmp/non-existent:$PATH:${RBENV_ROOT}/shims" \
+  PATH="${CRENV_ROOT}/shims:${CRENV_ROOT}/shims:/tmp/non-existent:$PATH:${CRENV_ROOT}/shims" \
     CRENV_VERSION=system run crenv-which kill-all-humans
   assert_success "${CRENV_TEST_DIR}/bin/kill-all-humans"
 }
@@ -70,7 +70,7 @@ create_executable() {
 
 @test "no executable found for system version" {
   export PATH="$(path_without "shards")"
-  RBENV_VERSION=system run crenv-which shards
+  CRENV_VERSION=system run crenv-which shards
   assert_failure "crenv: shards: command not found"
 }
 
@@ -99,7 +99,7 @@ echo HELLO="\$(printf ":%s" "\${hellos[@]}")"
 exit
 SH
 
-  CRENV_HOOK_PATH="$hook_path" IFS=$' \t\n' RBENV_VERSION=system run crenv-which anything
+  CRENV_HOOK_PATH="$hook_path" IFS=$' \t\n' CRENV_VERSION=system run crenv-which anything
   assert_success
   assert_output "HELLO=:hello:ugly:world:again"
 }
