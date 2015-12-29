@@ -27,8 +27,5 @@ CRENV_VERSION_FILE="${CRENV_ROOT}/version"
 if [ -n "$CRENV_VERSION" ]; then
   crenv-version-file-write "$CRENV_VERSION_FILE" "$CRENV_VERSION"
 else
-  crenv-version-file-read "$CRENV_VERSION_FILE" ||
-  crenv-version-file-read "${CRENV_ROOT}/global" ||
-  crenv-version-file-read "${CRENV_ROOT}/default" ||
-  echo system
+  crenv-version-file-read "$CRENV_VERSION_FILE" || echo system
 fi

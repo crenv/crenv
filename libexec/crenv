@@ -24,7 +24,7 @@ resolve_link() {
 }
 
 abs_dirname() {
-  local cwd="$(pwd)"
+  local cwd="$PWD"
   local path="$1"
 
   while [ -n "$path" ]; do
@@ -34,7 +34,7 @@ abs_dirname() {
   done
 
   pwd
-  cd "$cwd"
+  cd "$PWD"
 }
 
 if [ -z "${CRENV_ROOT}" ]; then
@@ -45,13 +45,13 @@ fi
 export CRENV_ROOT
 
 if [ -z "${CRENV_DIR}" ]; then
-  CRENV_DIR="$(pwd)"
+  CRENV_DIR="$PWD"
 else
   cd "$CRENV_DIR" 2>/dev/null || {
     echo "crenv: cannot change working directory to \`$CRENV_DIR'"
     exit 1
   } >&2
-  CRENV_DIR="$(pwd)"
+  CRENV_DIR="$PWD"
   cd "$OLDPWD"
 fi
 export CRENV_DIR
