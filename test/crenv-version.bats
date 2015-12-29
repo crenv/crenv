@@ -2,10 +2,13 @@
 
 load test_helper
 
+export GIT_DIR="${CRENV_TEST_DIR}/.git"
+
 setup() {
   mkdir -p "$HOME"
   git config --global user.name  "Tester"
   git config --global user.email "tester@test.local"
+  cd "$CRENV_TEST_DIR"
 }
 
 git_commit() {
@@ -16,31 +19,27 @@ git_commit() {
   assert [ ! -e "$CRENV_ROOT" ]
   run crenv---version
   assert_success
-  [[ $output == "crenv 0."* ]]
+  [[ $output == "crenv "?.?.? ]]
 }
 
 @test "reads version from git repo" {
-  mkdir -p "$CRENV_ROOT"
-  cd "$CRENV_ROOT"
   git init
+  git remote add origin https://github.com/pine613/crenv.git
   git_commit
   git tag v0.4.1
   git_commit
   git_commit
 
-  cd "$CRENV_TEST_DIR"
   run crenv---version
-  assert_success
-  [[ $output == "crenv 0.4.1-2-g"* ]]
+  assert_success "crenv 0.4.1-2-g$(git rev-parse --short HEAD)"
 }
 
 @test "prints default version if no tags in git repo" {
-  mkdir -p "$CRENV_ROOT"
-  cd "$CRENV_ROOT"
   git init
+  git remote add origin https://github.com/pine613/crenv.git
   git_commit
 
   cd "$CRENV_TEST_DIR"
   run crenv---version
-  [[ $output == "crenv 0."* ]]
+  [[ $output == "crenv "?.?.? ]]
 }
