@@ -36,13 +36,13 @@ $ exec $SHELL -l
 If you installed crenv, you may installed Crystal as following.
 
 ```
-$ crenv install 0.9.1
-$ crenv global 0.9.1
+$ crenv install 0.10.0
+$ crenv global 0.10.0
 $ crenv rehash
 $ crystal --version
-Crystal 0.9.1 [b3b1223] (Fri Oct 30 03:26:53 UTC 2015)
+Crystal 0.10.0 [9d59a34] (Wed Dec 23 17:03:04 UTC 2015)
 $ shards --version
-Shards 0.5.3 [7bd60f1] (2015-10-30)
+Shards 0.5.4 [d7e9812] (2015-12-27)
 ```
 
 
@@ -80,10 +80,10 @@ The crenv install command doesn't ship with crenv out of the box, but is provide
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.9.1
+$ crenv install 0.10.0
 
 # set global Crystal version:
-$ crenv global 0.9.1
+$ crenv global 0.10.0
 ```
 
 ### Updateing crenv
