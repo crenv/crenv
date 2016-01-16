@@ -130,7 +130,7 @@ crenv is copied code from [rbenv](https://github.com/rbenv/rbenv). Thank you.
 ## License
 (The MIT license)
 
-Copyright (c) 2015 Pine Mizune
+Copyright (c) 2015-2016 Pine Mizune
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
