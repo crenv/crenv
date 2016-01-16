@@ -109,6 +109,24 @@ $ cd plugins/crystal-build
 $ git pull origin master
 ```
 
+## Development
+The crenv source code is [hosted on GitHub](https://github.com/pine613/crenv). It's clean, modular, and easy to understand, even if you're not a shell hacker.
+
+Tests are executed using [Bats](https://github.com/sstephenson/bats):
+
+```
+$ bats test
+$ bats test/<file>.bats
+```
+
+## Contributing
+
+1. Fork it ( https://github.com/pine613/crenv/fork )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
+
 ## Acknowledgement
 
 - [riywo](https://github.com/riywo)<br />
@@ -118,14 +136,6 @@ crenv is copied code from [rbenv](https://github.com/rbenv/rbenv). Thank you.
 
 ## See also
 - [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager
-
-## Contributing
-
-1. Fork it ( https://github.com/pine613/crenv/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
 
 ## License
 (The MIT license)
