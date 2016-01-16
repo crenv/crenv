@@ -4,16 +4,23 @@
 
 English | [日本語](README.ja.md)
 
-## Install (for anyenv users)
+## Getting started
+### Install crenv by anyenv (recommended)
+It's very easy for you to install crenv, if you use [anyenv](https://github.com/riywo/anyenv).
 
-If you used [anyenv](https://github.com/riywo/anyenv), it might be very easy for you to install crenv !
+First, you should install [anyenv](https://github.com/riywo/anyenv).
+
+Next, you try to execute following commands:
 
 ```
 $ anyenv install crenv
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
 
-## Install (for everyone)
+### Install crenv by install script
+You try to execute following commands:
 
 ```
 $ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
@@ -28,19 +35,25 @@ $ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
 And, please add your shell profile:
 
 ```
-$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
+$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.your_profile
+$ echo 'eval "$(crenv init -)"' >> ~/.your_profile
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
+
+### Install Crystal by crenv
 
 If you installed crenv, you may installed Crystal as following.
 
 ```
-$ crenv install 0.10.0
-$ crenv global 0.10.0
+$ crenv install 0.10.2 # install Crystal
+$ crenv global 0.10.2 # set global Crystal version
 $ crenv rehash
+
 $ crystal --version
-Crystal 0.10.0 [9d59a34] (Wed Dec 23 17:03:04 UTC 2015)
+Crystal 0.10.2 [b2b2d93] (Wed Jan 13 16:56:23 UTC 2016)
+
 $ shards --version
 Shards 0.5.4 [d7e9812] (2015-12-27)
 ```
