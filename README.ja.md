@@ -83,12 +83,14 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 crenv は単体で Crystal のインストール機能を搭載していません。この機能を利用するには [crystal-build](https://github.com/pine613/crystal-build) をプラグインとしてご利用ください。
 
+[anyenv](https://github.com/riywo/anyenv) を使って crenv をインストールした場合、インストールスクリプトを使って crenv をインストールした場合は、[crystal-build](https://github.com/pine613/crystal-build) も同時にインストールされます。
+
 ```
 # list all available versions:
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.9.1
+$ crenv install 0.10.2
 ```
 
 ### crenv を更新する
