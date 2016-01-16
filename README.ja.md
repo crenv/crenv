@@ -4,23 +4,28 @@
 
 crenv は Ruby の [rbenv](https://github.com/sstephenson/rbenv) と同じ使い方ができる [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
 
-## anyenv を使ったインストール方法
+## はじめに
+### anyenv を使って crenv をインストールする (推奨)
 
 [anyenv](https://github.com/riywo/anyenv) を利用すると、たったのコマンド一つで crenv をインストールできます。
+
+以下のコマンドを実行する前に、事前に [anyenv](https://github.com/riywo/anyenv) をインストールしておく必要があります。
 
 ```
 $ anyenv install crenv
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
 
-## 通常インストール
+### インストールスクリプトを用いて crenv をインストールする
 以下のコマンドを使ってインストールが可能です。
 
 ```
 $ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
 ```
 
-`curl` ではなく、`wget` を用いる場合、
+`curl` ではなく、`wget` を用いる場合は、
 
 ```
 $ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
@@ -29,21 +34,23 @@ $ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
 インストール後は、下記コマンドのようにシェルの設定を追記する必要があります。
 
 ```
-$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
+$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.your_profile
+$ echo 'eval "$(crenv init -)"' >> ~/.your_profile
 $ exec $SHELL -l
 ```
 
+## crenv を用いて Crystal をインストールする
 上記の方法で crenv が正しくインストールされている場合、以下のコマンドで Crystal をインストールできます。
 
 ```
-$ crenv install 0.9.1
-$ crenv global 0.9.1
+$ crenv install 0.10.2 # 対象のバージョンの Crystal をインストール
+$ crenv global 0.10.2 # グローバルバージョンを指定
+
 $ crenv rehash
 $ crystal --version
-Crystal 0.9.1 [b3b1223] (Fri Oct 30 03:26:53 UTC 2015)
+Crystal 0.10.2 [b2b2d93] (Wed Jan 13 16:56:23 UTC 2016)
 $ shards --version
-Shards 0.5.3 [7bd60f1] (2015-10-30)
+Shards 0.5.4 [bb42b08] (2016-01-16)
 ```
 
 
@@ -116,7 +123,7 @@ crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピ
 ## ライセンス
 (The MIT license)
 
-Copyright (c) 2015 Pine Mizune
+Copyright (c) 2015-2016 Pine Mizune
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
