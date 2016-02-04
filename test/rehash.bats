@@ -105,15 +105,13 @@ OUT
 }
 
 @test "carries original IFS within hooks" {
-  hook_path="${CRENV_TEST_DIR}/crenv.d"
-  mkdir -p "${hook_path}/rehash"
-  cat > "${hook_path}/rehash/hello.bash" <<SH
+  create_hook rehash hello.bash <<SH
 hellos=(\$(printf "hello\\tugly world\\nagain"))
 echo HELLO="\$(printf ":%s" "\${hellos[@]}")"
 exit
 SH
 
-  CRENV_HOOK_PATH="$hook_path" IFS=$' \t\n' run crenv-rehash
+  IFS=$' \t\n' run crenv-rehash
   assert_success
   assert_output "HELLO=:hello:ugly:world:again"
 }

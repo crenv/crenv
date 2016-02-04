@@ -70,6 +70,7 @@ load test_helper
 }
 
 @test "CRENV_HOOK_PATH includes crenv built-in plugins" {
+  unset CRENV_HOOK_PATH
   run crenv echo "CRENV_HOOK_PATH"
   assert_success ":${CRENV_ROOT}/crenv.d:${BATS_TEST_DIRNAME%/*}/crenv.d:/usr/local/etc/crenv.d:/etc/crenv.d:/usr/lib/crenv/hooks"
 }

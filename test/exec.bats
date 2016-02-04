@@ -42,27 +42,14 @@ test
 OUT
 }
 
-@test "supports hook path with spaces" {
-  hook_path="${CRENV_TEST_DIR}/custom stuff/crenv hooks"
-  mkdir -p "${hook_path}/exec"
-  echo "export HELLO='from hook'" > "${hook_path}/exec/hello.bash"
-
-  export CRENV_VERSION=system
-  CRENV_HOOK_PATH="$hook_path" run crenv-exec env
-  assert_success
-  assert_line "HELLO=from hook"
-}
-
 @test "carries original IFS within hooks" {
-  hook_path="${CRENV_TEST_DIR}/crenv.d"
-  mkdir -p "${hook_path}/exec"
-  cat > "${hook_path}/exec/hello.bash" <<SH
+  create_hook exec hello.bash <<SH
 hellos=(\$(printf "hello\\tugly world\\nagain"))
 echo HELLO="\$(printf ":%s" "\${hellos[@]}")"
 SH
 
   export CRENV_VERSION=system
-  CRENV_HOOK_PATH="$hook_path" IFS=$' \t\n' run crenv-exec env
+  IFS=$' \t\n' run crenv-exec env
   assert_success
   assert_line "HELLO=:hello:ugly:world:again"
 }
