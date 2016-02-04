@@ -2,11 +2,6 @@
 
 load test_helper
 
-create_hook() {
-  mkdir -p "$1/$2"
-  touch "$1/$2/$3"
-}
-
 @test "prints usage help given no argument" {
   run crenv-hooks
   assert_failure "Usage: crenv hooks <command>"
@@ -14,12 +9,15 @@ create_hook() {
 
 @test "prints list of hooks" {
   path1="${CRENV_TEST_DIR}/crenv.d"
+  CRENV_HOOK_PATH="$path1"
+  create_hook exec "hello.bash"
+  create_hook exec "ahoy.bash"
+  create_hook exec "invalid.sh"
+  create_hook which "boom.bash"
+
   path2="${CRENV_TEST_DIR}/etc/crenv_hooks"
-  create_hook "$path1" exec "hello.bash"
-  create_hook "$path1" exec "ahoy.bash"
-  create_hook "$path1" exec "invalid.sh"
-  create_hook "$path1" which "boom.bash"
-  create_hook "$path2" exec "bueno.bash"
+  CRENV_HOOK_PATH="$path2"
+  create_hook exec "bueno.bash"
 
   CRENV_HOOK_PATH="$path1:$path2" run crenv-hooks exec
   assert_success
@@ -33,8 +31,10 @@ OUT
 @test "supports hook paths with spaces" {
   path1="${CRENV_TEST_DIR}/my hooks/crenv.d"
   path2="${CRENV_TEST_DIR}/etc/crenv hooks"
-  create_hook "$path1" exec "hello.bash"
-  create_hook "$path2" exec "ahoy.bash"
+  CRENV_HOOK_PATH="$path1"
+  create_hook exec "hello.bash"
+  CRENV_HOOK_PATH="$path2"
+  create_hook exec "ahoy.bash"
 
   CRENV_HOOK_PATH="$path1:$path2" run crenv-hooks exec
   assert_success
@@ -45,8 +45,8 @@ OUT
 }
 
 @test "resolves relative paths" {
-  path="${CRENV_TEST_DIR}/crenv.d"
-  create_hook "$path" exec "hello.bash"
+  CRENV_HOOK_PATH="${CRENV_TEST_DIR}/crenv.d"
+  create_hook exec "hello.bash"
   mkdir -p "$HOME"
 
   CRENV_HOOK_PATH="${HOME}/../crenv.d" run crenv-hooks exec

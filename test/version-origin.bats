@@ -36,3 +36,10 @@ setup() {
   run crenv-version-origin
   assert_success "${PWD}/.crenv-version"
 }
+
+@test "reports from hook" {
+  create_hook version-origin test.bash <<<"CRENV_VERSION_ORIGIN=plugin"
+
+  CRENV_VERSION=1 run crenv-version-origin
+  assert_success "plugin"
+}
