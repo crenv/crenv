@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 # Summary: Explain how the current Crystal version is set
+
 set -e
 [ -n "$CRENV_DEBUG" ] && set -x
 
-if [ -n "$CRENV_VERSION" ]; then
+unset CRENV_VERSION_ORIGIN
+
+OLDIFS="$IFS"
+IFS=$'\n' scripts=(`crenv-hooks version-origin`)
+IFS="$OLDIFS"
+for script in "${scripts[@]}"; do
+  source "$script"
+done
+
+if [ -n "$CRENV_VERSION_ORIGIN" ]; then
+  echo "$CRENV_VERSION_ORIGIN"
+elif [ -n "$CRENV_VERSION" ]; then
   echo "CRENV_VERSION environment variable"
 else
   crenv-version-file

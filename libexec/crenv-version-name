@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Summary: Show the current Crystal version
+
 set -e
 [ -n "$CRENV_DEBUG" ] && set -x
 
@@ -7,6 +8,13 @@ if [ -z "$CRENV_VERSION" ]; then
   CRENV_VERSION_FILE="$(crenv-version-file)"
   CRENV_VERSION="$(crenv-version-file-read "$CRENV_VERSION_FILE" || true)"
 fi
+
+OLDIFS="$IFS"
+IFS=$'\n' scripts=(`crenv-hooks version-name`)
+IFS="$OLDIFS"
+for script in "${scripts[@]}"; do
+  source "$script"
+done
 
 if [ -z "$CRENV_VERSION" ] || [ "$CRENV_VERSION" = "system" ]; then
   echo "system"

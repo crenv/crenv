@@ -18,8 +18,17 @@ setup() {
 }
 
 @test "system version is not checked for existance" {
-  CRENV_VERSION=system run crenv-version-name
+  crenv_version=system run crenv-version-name
   assert_success "system"
+}
+
+@test "CRENV_VERSION can be overriden by hook " {
+  create_version "0.11.0"
+  create_version "0.11.1"
+  create_hook version-name test.bash <<<"CRENV_VERSION=0.11.1"
+
+  CRENV_VERSION=0.11.0 run crenv-version-name
+  assert_success "0.11.1"
 }
 
 @test "CRENV_VERSION has precedence over local" {

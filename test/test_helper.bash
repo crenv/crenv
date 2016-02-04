@@ -15,6 +15,7 @@ fi
 if [ "$CRENV_ROOT" != "${CRENV_TEST_DIR}/root" ]; then
   export CRENV_ROOT="${CRENV_TEST_DIR}/root"
   export HOME="${CRENV_TEST_DIR}/home"
+  export CRENV_HOOK_PATH="${CRENV_ROOT}/crenv.d"
 
   PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
   PATH="${CRENV_TEST_DIR}/bin:$PATH"
@@ -122,6 +123,14 @@ path_without() {
     fi
   done
   echo "${path%:}"
+}
+
+create_hook() {
+  mkdir -p "${CRENV_HOOK_PATH}/$1"
+  touch "${CRENV_HOOK_PATH}/$1/$2"
+  if [ ! -t 0 ]; then
+    cat > "${CRENV_HOOK_PATH}/$1/$2"
+  fi
 }
 
 # vim: se et ts=2 sw=2 sts=2 ft=sh :
