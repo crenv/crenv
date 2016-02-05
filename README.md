@@ -47,15 +47,15 @@ crenv 1.0.0
 If you installed crenv, you may installed Crystal as following.
 
 ```
-$ crenv install 0.10.2 # install Crystal
-$ crenv global 0.10.2 # set global Crystal version
+$ crenv install 0.11.1 # install Crystal
+$ crenv global 0.11.1 # set global Crystal version
 $ crenv rehash
 
 $ crystal --version
-Crystal 0.10.2 [b2b2d93] (Wed Jan 13 16:56:23 UTC 2016)
+Crystal 0.11.1 [58c69f3] (Mon Jan 25 15:41:12 UTC 2016)
 
 $ shards --version
-Shards 0.5.4 [d7e9812] (2015-12-27)
+Shards 0.6.0 [7bd60f1] (2016-02-05)
 ```
 
 
@@ -93,10 +93,10 @@ The crenv install command doesn't ship with crenv out of the box, but is provide
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.10.0
+$ crenv install 0.11.1
 
 # set global Crystal version:
-$ crenv global 0.10.0
+$ crenv global 0.11.1
 ```
 
 ### Updateing crenv
