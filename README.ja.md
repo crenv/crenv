@@ -48,9 +48,9 @@ $ crenv global 0.10.2 # グローバルバージョンを指定
 
 $ crenv rehash
 $ crystal --version
-Crystal 0.10.2 [b2b2d93] (Wed Jan 13 16:56:23 UTC 2016)
+Crystal 0.11.1 [58c69f3] (Mon Jan 25 15:41:12 UTC 2016)
 $ shards --version
-Shards 0.5.4 [bb42b08] (2016-01-16)
+Shards 0.6.0 [7bd60f1] (2016-02-05)
 ```
 
 
@@ -86,11 +86,11 @@ crenv は単体で Crystal のインストール機能を搭載していませ�
 [anyenv](https://github.com/riywo/anyenv) を使って crenv をインストールした場合、インストールスクリプトを使って crenv をインストールした場合は、[crystal-build](https://github.com/pine613/crystal-build) も同時にインストールされます。
 
 ```
-# list all available versions:
+# 利用できるバージョンを一覧表示
 $ crenv install -l
 
-# install a Crystal version:
-$ crenv install 0.10.2
+# バージョンを指定して Crystal をインストール
+$ crenv install 0.11.1
 ```
 
 ### crenv を更新する
