@@ -1,4 +1,4 @@
-# crenv [![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
+# crenv [![Build Status](https://travis-ci.org/pine/crenv.svg?branch=master)](https://travis-ci.org/pine/crenv)
 
 [Crystal](http://crystal-lang.org/) version manager. crenv is inspired by [rbenv](https://github.com/sstephenson/rbenv).
 
@@ -23,13 +23,13 @@ crenv 1.0.0
 You try to execute following commands:
 
 ```
-$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ curl -L https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 or
 
 ```
-$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ wget -qO- https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 And, please add your shell profile:
@@ -86,7 +86,7 @@ You might want to see [rbenv#command-reference](https://github.com/sstephenson/r
 
 ### Installing Crystal Versions
 
-The crenv install command doesn't ship with crenv out of the box, but is provided by the [crystal-build](https://github.com/pine613/crystal-build) project.
+The crenv install command doesn't ship with crenv out of the box, but is provided by the [crystal-build](https://github.com/pine/crystal-build) project.
 
 ```
 # list all available versions:
@@ -110,7 +110,7 @@ $ git pull origin master
 ```
 
 ## Development
-The crenv source code is [hosted on GitHub](https://github.com/pine613/crenv). It's clean, modular, and easy to understand, even if you're not a shell hacker.
+The crenv source code is [hosted on GitHub](https://github.com/pine/crenv). It's clean, modular, and easy to understand, even if you're not a shell hacker.
 
 Tests are executed using [Bats](https://github.com/sstephenson/bats):
 
@@ -121,7 +121,7 @@ $ bats test/<file>.bats
 
 ## Contributing
 
-1. Fork it ( https://github.com/pine613/crenv/fork )
+1. Fork it ( https://github.com/pine/crenv/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -135,7 +135,7 @@ crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
 crenv is copied code from [rbenv](https://github.com/rbenv/rbenv). Thank you.
 
 ## See also
-- [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager
+- [crystalbrew](https://github.com/pine/crystalbrew) Another Crystal version manager
 
 ## License
 (The MIT license)

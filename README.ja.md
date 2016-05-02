@@ -1,4 +1,4 @@
-# crenv [![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
+# crenv [![Build Status](https://travis-ci.org/pine/crenv.svg?branch=master)](https://travis-ci.org/pine/crenv)
 
 [English](README.md) | 日本語
 
@@ -22,13 +22,13 @@ crenv 1.0.0
 以下のコマンドを使ってインストールが可能です。
 
 ```
-$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ curl -L https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 `curl` ではなく、`wget` を用いる場合は、
 
 ```
-$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ wget -qO- https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 インストール後は、下記コマンドのようにシェルの設定を追記する必要があります。
@@ -81,9 +81,9 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 ### バージョンを指定して Crystal をインストールする
 
-crenv は単体で Crystal のインストール機能を搭載していません。この機能を利用するには [crystal-build](https://github.com/pine613/crystal-build) をプラグインとしてご利用ください。
+crenv は単体で Crystal のインストール機能を搭載していません。この機能を利用するには [crystal-build](https://github.com/pine/crystal-build) をプラグインとしてご利用ください。
 
-[anyenv](https://github.com/riywo/anyenv) を使って crenv をインストールした場合、インストールスクリプトを使って crenv をインストールした場合は、[crystal-build](https://github.com/pine613/crystal-build) も同時にインストールされます。
+[anyenv](https://github.com/riywo/anyenv) を使って crenv をインストールした場合、インストールスクリプトを使って crenv をインストールした場合は、[crystal-build](https://github.com/pine/crystal-build) も同時にインストールされます。
 
 ```
 # 利用できるバージョンを一覧表示
@@ -112,11 +112,11 @@ crenv は [ndenv](https://github.com/riywo/ndenv) よりフォークして作成
 crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピーして作成されています。
 
 ## 参照
-- [crystalbrew](https://github.com/pine613/crystalbrew) 別の Crystal バージョンマネージャー
+- [crystalbrew](https://github.com/pine/crystalbrew) 別の Crystal バージョンマネージャー
 
 ## パッチの送付方法
 
-1. このリポジトリをフォークします ( https://github.com/pine613/crenv/fork )
+1. このリポジトリをフォークします ( https://github.com/pine/crenv/fork )
 2. フォーク先で新しいブランチを切ります (git checkout -b my-new-feature)
 3. 変更をコミットしてください (git commit -am 'Add some feature')
 4. フォーク先にプッシュします (git push origin my-new-feature)

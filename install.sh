@@ -21,12 +21,12 @@ if [ -d "$CRENV_ROOT" ]; then
 fi
 
 echo "=> Cloning crenv repository"
-git clone https://github.com/pine613/crenv.git "$CRENV_ROOT"
+git clone https://github.com/pine/crenv.git "$CRENV_ROOT"
 
 echo
 echo "=> Cloning crenv plugin repositories"
-git clone https://github.com/pine613/crystal-build.git "$CRENV_ROOT/plugins/crystal-build"
-git clone https://github.com/pine613/crenv-update.git "$CRENV_ROOT/plugins/crenv-update"
+git clone https://github.com/pine/crystal-build.git "$CRENV_ROOT/plugins/crystal-build"
+git clone https://github.com/pine/crenv-update.git "$CRENV_ROOT/plugins/crenv-update"
 
 echo
 echo "=> Append the following line to the correct file yourself"
