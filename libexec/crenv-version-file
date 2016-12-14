@@ -64,6 +64,6 @@ else
   find_local_valid_shard_file "$CRENV_DIR" || {
     [ "$CRENV_DIR" != "$PWD" ] && find_local_version_file "$PWD"
   } || {
-    [ "$CRENV_DIR" != "$PWD" ] && find_valid_shard_file "$PWD"
+    [ "$CRENV_DIR" != "$PWD" ] && find_local_valid_shard_file "$PWD"
   } || find_global_version_file
 fi
