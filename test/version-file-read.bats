@@ -70,3 +70,27 @@ IN
   run crenv-version-file-read my-version
   assert_success "1.9.3"
 }
+
+@test "reads shard.yml version file" {
+  cat > shard.yml <<< "crystal: 0.20.1"
+  run crenv-version-file-read shard.yml
+  assert_success "0.20.1"
+}
+
+@test "reads shard.yml version file (single quoted)" {
+  cat > shard.yml <<< "crystal: '0.20.1'"
+  run crenv-version-file-read shard.yml
+  assert_success "0.20.1"
+}
+
+@test "reads shard.yml version file (double quoted)" {
+  cat > shard.yml <<< "crystal: \"0.20.1\""
+  run crenv-version-file-read shard.yml
+  assert_success "0.20.1"
+}
+
+@test "reads invalid shard.yml version file" {
+  touch "shard.yml"
+  run crenv-version-file-read shard.yml
+  assert_failure ""
+}
