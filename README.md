@@ -1,48 +1,61 @@
-# crenv [![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
+# crenv [![Build Status](https://travis-ci.org/pine/crenv.svg?branch=master)](https://travis-ci.org/pine/crenv)
 
 [Crystal](http://crystal-lang.org/) version manager. crenv is inspired by [rbenv](https://github.com/sstephenson/rbenv).
 
 English | [日本語](README.ja.md)
 
-## Install (for anyenv users)
+## Getting started
+### Install crenv by anyenv (recommended)
+It's very easy for you to install crenv, if you use [anyenv](https://github.com/riywo/anyenv).
 
-If you used [anyenv](https://github.com/riywo/anyenv), it might be very easy for you to install crenv !
+First, you should install [anyenv](https://github.com/riywo/anyenv).
+
+Next, you try to execute following commands:
 
 ```
 $ anyenv install crenv
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
 
-## Install (for everyone)
+### Install crenv by install script
+You try to execute following commands:
 
 ```
-$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ curl -L https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 or
 
 ```
-$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ wget -qO- https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 And, please add your shell profile:
 
 ```
-$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
+$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.your_profile
+$ echo 'eval "$(crenv init -)"' >> ~/.your_profile
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
+
+### Install Crystal by crenv
 
 If you installed crenv, you may installed Crystal as following.
 
 ```
-$ crenv install 0.10.0
-$ crenv global 0.10.0
+$ crenv install 0.20.0 # install Crystal
+$ crenv global 0.20.0 # set global Crystal version
 $ crenv rehash
+
 $ crystal --version
-Crystal 0.10.0 [9d59a34] (Wed Dec 23 17:03:04 UTC 2015)
+Crystal 0.20.0 (2016-11-22)
+
 $ shards --version
-Shards 0.5.4 [d7e9812] (2015-12-27)
+Shards 0.7.0 (2016-11-22)
 ```
 
 
@@ -73,17 +86,17 @@ You might want to see [rbenv#command-reference](https://github.com/sstephenson/r
 
 ### Installing Crystal Versions
 
-The crenv install command doesn't ship with crenv out of the box, but is provided by the [crystal-build](https://github.com/pine613/crystal-build) project.
+The crenv install command doesn't ship with crenv out of the box, but is provided by the [crystal-build](https://github.com/pine/crystal-build) project.
 
 ```
 # list all available versions:
 $ crenv install -l
 
 # install a Crystal version:
-$ crenv install 0.10.0
+$ crenv install 0.20.0
 
 # set global Crystal version:
-$ crenv global 0.10.0
+$ crenv global 0.20.0
 ```
 
 ### Updateing crenv
@@ -96,6 +109,24 @@ $ cd plugins/crystal-build
 $ git pull origin master
 ```
 
+## Development
+The crenv source code is [hosted on GitHub](https://github.com/pine/crenv). It's clean, modular, and easy to understand, even if you're not a shell hacker.
+
+Tests are executed using [Bats](https://github.com/sstephenson/bats):
+
+```
+$ bats test
+$ bats test/<file>.bats
+```
+
+## Contributing
+
+1. Fork it ( https://github.com/pine/crenv/fork )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
+
 ## Acknowledgement
 
 - [riywo](https://github.com/riywo)<br />
@@ -104,20 +135,12 @@ crenv is forked from [ndenv](https://github.com/riywo/ndenv). Thank you.
 crenv is copied code from [rbenv](https://github.com/rbenv/rbenv). Thank you.
 
 ## See also
-- [crystalbrew](https://github.com/pine613/crystalbrew) Another Crystal version manager
-
-## Contributing
-
-1. Fork it ( https://github.com/pine613/crenv/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
+- [crystalbrew](https://github.com/pine/crystalbrew) Another Crystal version manager
 
 ## License
 (The MIT license)
 
-Copyright (c) 2015 Pine Mizune
+Copyright (c) 2015-2016 Pine Mizune
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

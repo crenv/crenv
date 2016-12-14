@@ -1,49 +1,57 @@
-# crenv [![Build Status](https://travis-ci.org/pine613/crenv.svg?branch=master)](https://travis-ci.org/pine613/crenv)
+# crenv [![Build Status](https://travis-ci.org/pine/crenv.svg?branch=master)](https://travis-ci.org/pine/crenv)
 
 [English](README.md) | 日本語
 
 crenv は Ruby の [rbenv](https://github.com/sstephenson/rbenv) と同じ使い方ができる [Crystal](http://crystal-lang.org/) 用のバージョンマネージャーです。
 
-## anyenv を使ったインストール方法
+## はじめに
+### anyenv を使って crenv をインストールする (推奨)
 
 [anyenv](https://github.com/riywo/anyenv) を利用すると、たったのコマンド一つで crenv をインストールできます。
+
+以下のコマンドを実行する前に、事前に [anyenv](https://github.com/riywo/anyenv) をインストールしておく必要があります。
 
 ```
 $ anyenv install crenv
 $ exec $SHELL -l
+$ crenv -v
+crenv 1.0.0
 ```
 
-## 通常インストール
+### インストールスクリプトを用いて crenv をインストールする
 以下のコマンドを使ってインストールが可能です。
 
 ```
-$ curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ curl -L https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
-`curl` ではなく、`wget` を用いる場合、
+`curl` ではなく、`wget` を用いる場合は、
 
 ```
-$ wget -qO- https://raw.github.com/pine613/crenv/master/install.sh | bash
+$ wget -qO- https://raw.github.com/pine/crenv/master/install.sh | bash
 ```
 
 インストール後は、下記コマンドのようにシェルの設定を追記する必要があります。
 
 ```
-$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.bash_profile
-$ echo 'eval "$(crenv init -)"' >> ~/.bash_profile
+$ echo 'export PATH="$HOME/.crenv/bin:$PATH"' >> ~/.your_profile
+$ echo 'eval "$(crenv init -)"' >> ~/.your_profile
 $ exec $SHELL -l
 ```
 
+## crenv を用いて Crystal をインストールする
 上記の方法で crenv が正しくインストールされている場合、以下のコマンドで Crystal をインストールできます。
 
 ```
-$ crenv install 0.9.1
-$ crenv global 0.9.1
+$ crenv install 0.19.0 # 対象のバージョンの Crystal をインストール
+$ crenv global 0.19.0 # グローバルバージョンを指定
+
 $ crenv rehash
 $ crystal --version
-Crystal 0.9.1 [b3b1223] (Fri Oct 30 03:26:53 UTC 2015)
+Crystal 0.19.0 (2016-09-02)
+
 $ shards --version
-Shards 0.5.3 [7bd60f1] (2015-10-30)
+Shards 0.6.3 (2016-09-02)
 ```
 
 
@@ -74,14 +82,16 @@ For full documentation, see: https://github.com/pine613/crenv#readme
 
 ### バージョンを指定して Crystal をインストールする
 
-crenv は単体で Crystal のインストール機能を搭載していません。この機能を利用するには [crystal-build](https://github.com/pine613/crystal-build) をプラグインとしてご利用ください。
+crenv は単体で Crystal のインストール機能を搭載していません。この機能を利用するには [crystal-build](https://github.com/pine/crystal-build) をプラグインとしてご利用ください。
+
+[anyenv](https://github.com/riywo/anyenv) を使って crenv をインストールした場合、インストールスクリプトを使って crenv をインストールした場合は、[crystal-build](https://github.com/pine/crystal-build) も同時にインストールされます。
 
 ```
-# list all available versions:
+# 利用できるバージョンを一覧表示
 $ crenv install -l
 
-# install a Crystal version:
-$ crenv install 0.9.1
+# バージョンを指定して Crystal をインストール
+$ crenv install 0.19.0
 ```
 
 ### crenv を更新する
@@ -103,11 +113,11 @@ crenv は [ndenv](https://github.com/riywo/ndenv) よりフォークして作成
 crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピーして作成されています。
 
 ## 参照
-- [crystalbrew](https://github.com/pine613/crystalbrew) 別の Crystal バージョンマネージャー
+- [crystalbrew](https://github.com/pine/crystalbrew) 別の Crystal バージョンマネージャー
 
 ## パッチの送付方法
 
-1. このリポジトリをフォークします ( https://github.com/pine613/crenv/fork )
+1. このリポジトリをフォークします ( https://github.com/pine/crenv/fork )
 2. フォーク先で新しいブランチを切ります (git checkout -b my-new-feature)
 3. 変更をコミットしてください (git commit -am 'Add some feature')
 4. フォーク先にプッシュします (git push origin my-new-feature)
@@ -116,7 +126,7 @@ crenv は [rbenv](https://github.com/rbenv/rbenv) のソースコードをコピ
 ## ライセンス
 (The MIT license)
 
-Copyright (c) 2015 Pine Mizune
+Copyright (c) 2015-2016 Pine Mizune
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
