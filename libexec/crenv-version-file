@@ -26,10 +26,44 @@ find_global_version_file() {
   echo "$global_version_file"
 }
 
+find_local_shard_file() {
+  local root="$1"
+  while ! [[ "$root" =~ ^//[^/]*$ ]]; do
+    if [ -e "${root}/shard.yml" ]; then
+      echo "${root}/shard.yml"
+      return 0
+    fi
+    [ -n "$root" ] || break
+    root="${root%/*}"
+  done
+  return 1
+}
+
+find_local_valid_shard_file() {
+  local root="$1"
+  local shard_file=$(find_local_shard_file $root)
+
+  if [ -z "$shard_file" ]; then
+    return 1
+  fi
+
+  local crystal_version=$(crenv-version-file-read $shard_file)
+  if [ -z "$crystal_version" ]; then
+    return 1
+  else
+    echo "$shard_file"
+    return 0
+  fi
+}
+
 if [ -n "$target_dir" ]; then
-  find_local_version_file "$target_dir"
+  find_local_version_file "$target_dir" ||
+  find_local_valid_shard_file "$target_dir"
 else
-  find_local_version_file "$CRENV_DIR" || {
+  find_local_version_file "$CRENV_DIR" ||
+  find_local_valid_shard_file "$CRENV_DIR" || {
     [ "$CRENV_DIR" != "$PWD" ] && find_local_version_file "$PWD"
+  } || {
+    [ "$CRENV_DIR" != "$PWD" ] && find_local_valid_shard_file "$PWD"
   } || find_global_version_file
 fi
