@@ -5,17 +5,48 @@ set -e
 
 VERSION_FILE="$1"
 
-if [ -e "$VERSION_FILE" ]; then
+read_version_file() {
+  local version_file="$1"
+
   # Read the first non-whitespace word from the specified version file.
   # Be careful not to load it whole in case there's something crazy in it.
   IFS="${IFS}"$'\r'
-  words=( $(cut -b 1-1024 "$VERSION_FILE") )
+  words=( $(cut -b 1-1024 "$version_file") )
   version="${words[0]}"
 
-  if [ -n "$version" ]; then
-    echo "$version"
-    exit
+  if [ -z "$version" ]; then
+    return 1
   fi
-fi
 
-exit 1
+  echo $version
+  return 0
+}
+
+read_shard_file() {
+  local shard_file="$1"
+
+  local version=$(cat "$shard_file" | awk '{
+    if (match($0, /^crystal:.+$/)) {
+      if (match($0, /[0-9.]+/)) {
+        print substr($0, RSTART, RLENGTH)
+      }
+    }
+  }')
+
+  if [ -z "$version" ]; then
+    return 1
+  else
+    echo $version
+    return 0
+  fi
+}
+
+if [ -e "$VERSION_FILE" ]; then
+  if [[ "$VERSION_FILE" =~ shard\.yml$ ]]; then
+    read_shard_file "$VERSION_FILE"
+  else
+    read_version_file "$VERSION_FILE"
+  fi
+else
+  exit 1
+fi
