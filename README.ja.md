@@ -75,7 +75,7 @@ Some useful crenv commands are:
    whence      List all Crystal versions that contain the given executable
 
 See `crenv help <command>' for information on a specific command.
-For full documentation, see: https://github.com/pine613/crenv#readme
+For full documentation, see: https://github.com/pine/crenv#readme
 ```
 
 より詳細なコマンドの使い方について知りたい場合、[rbenv#command-reference](https://github.com/sstephenson/rbenv#command-reference) をご覧ください。
