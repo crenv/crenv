@@ -61,7 +61,7 @@ load test_helper
   export PATH="${BATS_TEST_DIRNAME}/../libexec:/usr/bin:/bin:/usr/local/bin"
   run crenv-init - fish
   assert_success
-  assert_line 0 "setenv PATH '${CRENV_ROOT}/shims' \$PATH"
+  assert_line 0 "set -gx PATH '${CRENV_ROOT}/shims' \$PATH"
 }
 
 @test "can add shims to PATH more than once" {
@@ -75,7 +75,7 @@ load test_helper
   export PATH="${CRENV_ROOT}/shims:$PATH"
   run crenv-init - fish
   assert_success
-  assert_line 0 "setenv PATH '${CRENV_ROOT}/shims' \$PATH"
+  assert_line 0 "set -gx PATH '${CRENV_ROOT}/shims' \$PATH"
 }
 
 @test "outputs sh-compatible syntax" {
