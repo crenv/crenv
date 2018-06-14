@@ -71,8 +71,8 @@ mkdir -p "${CRENV_ROOT}/"{shims,versions}
 
 case "$shell" in
 fish )
-  echo "setenv PATH '${CRENV_ROOT}/shims' \$PATH"
-  echo "setenv CRENV_SHELL $shell"
+  echo "set -gx PATH '${CRENV_ROOT}/shims' \$PATH"
+  echo "set -gx CRENV_SHELL $shell"
 ;;
 * )
   echo 'export PATH="'${CRENV_ROOT}'/shims:${PATH}"'

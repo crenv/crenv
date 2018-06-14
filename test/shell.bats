@@ -48,5 +48,5 @@ SH
 @test "shell change version (fish)" {
   mkdir -p "${CRENV_ROOT}/versions/1.2.3"
   CRENV_SHELL=fish run crenv-sh-shell 1.2.3
-  assert_success 'setenv CRENV_VERSION "1.2.3"'
+  assert_success 'set -gx CRENV_VERSION "1.2.3"'
 }

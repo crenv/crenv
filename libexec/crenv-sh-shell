@@ -52,7 +52,7 @@ fi
 if crenv-prefix "$version" >/dev/null; then
   case "$shell" in
   fish )
-    echo "setenv CRENV_VERSION \"${version}\""
+    echo "set -gx CRENV_VERSION \"${version}\""
     ;;
   * )
     echo "export CRENV_VERSION=\"${version}\""
