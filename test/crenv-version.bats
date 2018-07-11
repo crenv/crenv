@@ -4,10 +4,13 @@ load test_helper
 
 export GIT_DIR="${CRENV_TEST_DIR}/.git"
 
+# points to /tmp/crenv/home/.gitconfig
+export GIT_CONFIG="$HOME/.gitconfig"
+
 setup() {
   mkdir -p "$HOME"
-  git config --global user.name  "Tester"
-  git config --global user.email "tester@test.local"
+  git config user.name  "Tester"
+  git config user.email "tester@test.local"
   cd "$CRENV_TEST_DIR"
 }
 
