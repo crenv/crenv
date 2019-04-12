@@ -99,7 +99,7 @@ $ crenv install 0.20.0
 $ crenv global 0.20.0
 ```
 
-### Updateing crenv
+### Updating crenv
 Please execute following commands to update crenv.
 
 ```
